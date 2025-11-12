@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef CONTROLADORGENERAL_H
 #define CONTROLADORGENERAL_H
 
@@ -32,3 +33,16 @@ public:
 
 #endif // CONTROLADORGENERAL_H
 
+=======
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       ControladorGeneral
+Responsabilidades:        
+    ...
+Colaboradores:            
+    ...
+===============================================================================
+*/
+>>>>>>> 30f205684ecc2689dc0c56a3dd44bd4c690b4088

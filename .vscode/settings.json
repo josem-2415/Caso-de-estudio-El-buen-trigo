@@ -1,5 +1,6 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "iostream": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -11,11 +12,17 @@
         "compare": "cpp",
         "concepts": "cpp",
         "cstdarg": "cpp",
+=======
+        "cctype": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+>>>>>>> 30f205684ecc2689dc0c56a3dd44bd4c690b4088
         "cstddef": "cpp",
         "cstdint": "cpp",
         "cstdio": "cpp",
         "cstdlib": "cpp",
         "cstring": "cpp",
+<<<<<<< HEAD
         "ctime": "cpp",
         "cwchar": "cpp",
         "cwctype": "cpp",
@@ -56,5 +63,22 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
+=======
+        "cwchar": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "iosfwd": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "string": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "vector": "cpp",
+        "xmemory": "cpp",
+        "xstring": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp"
+>>>>>>> 30f205684ecc2689dc0c56a3dd44bd4c690b4088
     }
 }

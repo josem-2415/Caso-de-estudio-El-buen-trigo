@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef ENCARGADOINVENTARIO_H
 #define ENCARGADOINVENTARIO_H
 
@@ -18,3 +19,16 @@ public:
 };
 
 #endif
+=======
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       EncargadoInventario
+Responsabilidades:        
+    ...
+Colaboradores:            
+    ...
+===============================================================================
+*/
+>>>>>>> 30f205684ecc2689dc0c56a3dd44bd4c690b4088
