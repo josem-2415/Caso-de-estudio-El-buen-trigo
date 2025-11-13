@@ -8,7 +8,7 @@ void ControladorGeneral::ejecutarMenuPanadero(int opcion) {
             panadero.registrarReceta();
             break;
         case 2:
-            panadero.registrarPanes();
+            panadero.editarReceta();
             break;
         case 3:
             panadero.consultarStock();
