@@ -1,3 +1,5 @@
+
+
 /*
 ===============================================================================
                                 TARJETA CRC
@@ -9,6 +11,7 @@ Colaboradores:
     ...
 ===============================================================================
 */
+
 #ifndef ENCARGADOINVENTARIO_H
 #define ENCARGADOINVENTARIO_H
 
@@ -29,3 +32,22 @@ public:
 };
 
 #endif
+
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       EncargadoInventario
+Responsabilidades:  
+    Agrega ingredientes al inventario
+    Edita los ingredientes de inventario
+    Elimina ingredientes
+    verifica los niveles de los ingredientes
+Colaboradores:            
+    Inventario
+    VistaInventario
+    ControladorGeneral
+===============================================================================
+*/
+
+

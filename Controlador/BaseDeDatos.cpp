@@ -1,55 +1,106 @@
 #include "BaseDeDatos.h"
 #include <filesystem>
 
-BaseDeDatos::BaseDeDatos() {}
+BaseDeDatos::BaseDeDatos() : jsonCargado(false) {}
 
 void BaseDeDatos::conectar(const std::string& ruta) {
-    rutaBD = ruta;
-    datos.clear();
-
-    namespace fs = std::filesystem;
-    fs::path p(ruta);
-
-    if (!fs::exists(p)) {
-        std::cerr << "Ruta no existe: " << ruta << std::endl;
+    std::ifstream archivo(ruta);
+    if (!archivo.is_open()) {
+        std::cerr << "No se pudo abrir JSON: " << ruta << std::endl;
         return;
     }
-
-    if (fs::is_directory(p)) {
-        for (const auto& ent : fs::directory_iterator(p)) {
-            if (ent.is_regular_file() && ent.path().extension() == ".txt") {
-                cargarDatos(ent.path(), ent.path().filename().string());
-            }
-        }
-    } else if (fs::is_regular_file(p) && p.extension() == ".txt") {
-        cargarDatos(p, p.filename().string());
-    } else {
-        std::cerr << "Ruta no es un .txt ni un directorio: " << ruta << std::endl;
+    
+    try {
+        archivo >> datosJSON;
+        jsonCargado = true;
+        archivo.close();
+        std::cout << "JSON cargado exitosamente" << std::endl;
+    } catch (json::parse_error& e) {
+        std::cerr << "Error al parsear JSON: " << e.what() << std::endl;
+        jsonCargado = false;
+        archivo.close();
     }
 }
 
 void BaseDeDatos::desconectar() {
-    datos.clear();
+    datosJSON.clear();
+    jsonCargado = false;
 }
 
-void BaseDeDatos::cargarDatos(const std::filesystem::path& ruta, const std::string& nombreArchivo) {
-    std::ifstream archivo(ruta);
-    std::string linea;
-    if (!archivo.is_open()) {
-        std::cerr << "No se pudo abrir: " << ruta << std::endl;
-        return;
+bool BaseDeDatos::tieneJSON() const {
+    return jsonCargado;
+}
+
+// Guardar panes y ingredientes en JSON
+void BaseDeDatos::guardarDatos(const std::string& rutaArchivo,
+                               const std::vector<Ingredientes>& ingredientes,
+                               const std::vector<Panes>& panes) {
+    json datos;
+    
+    // Guardar ingredientes
+    datos["ingredientes"] = json::array();
+    for (const auto& ing : ingredientes) {
+        json ingredienteJSON;
+        ingredienteJSON["nombre"] = ing.getNombre();
+        ingredienteJSON["unidadMedida"] = ing.getUnidadMedida();
+        datos["ingredientes"].push_back(ingredienteJSON);
     }
-    while (std::getline(archivo, linea)) {
-        datos[nombreArchivo].push_back(linea);
+    
+    // Guardar panes
+    datos["panes"] = json::array();
+    for (const auto& pan : panes) {
+        json panJSON;
+        panJSON["nombre"] = pan.getNombre();
+        panJSON["stock"] = pan.getStock();
+        datos["panes"].push_back(panJSON);
+    }
+    
+    std::ofstream archivo(rutaArchivo);
+    if (archivo.is_open()) {
+        archivo << datos.dump(4);
+        archivo.close();
+        std::cout << "Datos guardados correctamente" << std::endl;
+    } else {
+        std::cerr << "Error al guardar datos" << std::endl;
     }
 }
 
-const std::map<std::string, std::vector<std::string>>& BaseDeDatos::obtenerDatos() const {
-    return datos;
+// Cargar ingredientes desde JSON
+std::vector<Ingredientes> BaseDeDatos::cargarIngredientes() {
+    std::vector<Ingredientes> ingredientes;
+    
+    if (!jsonCargado || !datosJSON.contains("ingredientes")) {
+        std::cerr << "No se pueden cargar ingredientes" << std::endl;
+        return ingredientes;
+    }
+    
+    for (const auto& ingJSON : datosJSON["ingredientes"]) {
+        Ingredientes ing;
+        ing.setNombre(ingJSON["nombre"]);
+        ing.setUnidadMedida(ingJSON["unidadMedida"]);
+        ingredientes.push_back(ing);
+    }
+    
+    std::cout << ingredientes.size() << " ingredientes cargados" << std::endl;
+    return ingredientes;
 }
 
-std::vector<std::string> BaseDeDatos::obtenerLineas(const std::string& nombreArchivo) const {
-    auto it = datos.find(nombreArchivo);
-    if (it != datos.end()) return it->second;
-    return {};
+// Cargar panes desde JSON
+std::vector<Panes> BaseDeDatos::cargarPanes() {
+    std::vector<Panes> panes;
+    
+    if (!jsonCargado || !datosJSON.contains("panes")) {
+        std::cerr << "No se pueden cargar panes" << std::endl;
+        return panes;
+    }
+    
+    for (const auto& panJSON : datosJSON["panes"]) {
+        Panes pan;
+        pan.setNombre(panJSON["nombre"]);
+        pan.setStock(panJSON["stock"]);
+        panes.push_back(pan);
+    }
+    
+    std::cout << panes.size() << " panes cargados" << std::endl;
+    return panes;
 }

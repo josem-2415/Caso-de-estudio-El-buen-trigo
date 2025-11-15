@@ -1,3 +1,15 @@
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       BaseDeDatos
+Responsabilidades:        
+    Se encarga de guardar los datos de panes y de ingredientes
+Colaboradores:            
+    Colabora con las clase panes e ingredientes, para usar los gettters y 
+    metodos y ponerlos en una archivo json
+===============================================================================
+*/
 #ifndef BASEDEDATOS_H
 #define BASEDEDATOS_H
 
@@ -5,24 +17,32 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <map>
-#include <filesystem>
+#include "json.hpp"
+#include "Modelo/Panes.h"
+#include "Modelo/Ingredientes.h"
+
+using json = nlohmann::json;
 
 class BaseDeDatos {
 private:
-    std::string rutaBD;
-    std::map<std::string, std::vector<std::string>> datos;
-
-    void cargarDatos(const std::filesystem::path& ruta, const std::string& nombreArchivo);
+    json datosJSON;
+    bool jsonCargado;
 
 public:
     BaseDeDatos();
-    // conectar puede recibir una carpeta (lee todos los .txt) o un solo archivo .txt
+    
+    // Conectar y desconectar
     void conectar(const std::string& ruta);
     void desconectar();
-
-    const std::map<std::string, std::vector<std::string>>& obtenerDatos() const;
-    std::vector<std::string> obtenerLineas(const std::string& nombreArchivo) const;
+    bool tieneJSON() const;
+    
+    // Guardar y cargar datos
+    void guardarDatos(const std::string& rutaArchivo,
+                      const std::vector<Ingredientes>& ingredientes,
+                      const std::vector<Panes>& panes); //contiene los vectores para guardar los datos de ingredientes y de panes
+    
+    std::vector<Ingredientes> cargarIngredientes();
+    std::vector<Panes> cargarPanes();
 };
 
 #endif

@@ -1,3 +1,4 @@
+
 /*
 ===============================================================================
                                 TARJETA CRC
@@ -9,6 +10,7 @@ Colaboradores:
     ...
 ===============================================================================
 */
+
 #ifndef CONTROLADORGENERAL_H
 #define CONTROLADORGENERAL_H
 
@@ -42,4 +44,19 @@ public:
 };
 
 #endif // CONTROLADORGENERAL_H
+
+
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       ControladorGeneral
+Responsabilidades:        
+    Se encarga de ejecutar los menus para los diferentes usuarios
+Colaboradores:            
+    Adminitrador
+    Panadero
+    BaseDeDatos
+===============================================================================
+*/
 
