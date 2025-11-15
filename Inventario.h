@@ -45,7 +45,7 @@ class Inventario{
     const double getCantidadIngrediente(const std::string& nombreIngrediente) const;
 
     void setBaseDatos(BaseDeDatos& bd);
-    void cargarDesdeBD(BaseDeDatos& bd);
+    void cargarDesdeBD( BaseDeDatos& bd);
 };
 
 #endif // INVENTARIO_H
