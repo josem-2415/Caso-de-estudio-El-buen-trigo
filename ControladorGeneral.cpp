@@ -4,6 +4,13 @@ ControladorGeneral::ControladorGeneral() {}
 
 void ControladorGeneral::inicializarBaseDeDatos(const std::string& ruta) {
     baseDatos.conectar(ruta);
+
+    // Cargar todo
+    inventarioIngredientes.cargarDesdeBD(baseDatos);
+    cargarRecetas();
+    inventarioPanes.cargarDesdeBD(baseDatos, recetas);
+
+    std::cout << "[Sistema] Datos cargados desde TXT.\n";
 }
 
 void ControladorGeneral::ejecutarMenuPanadero(int opcion) {
@@ -82,4 +89,51 @@ void ControladorGeneral::ejecutarMenuAdministrador(int opcion) {
                 break;
         }
     }while(opcionMenu != 3);
+}
+
+void ControladorGeneral::inicializarDependencias(){
+        panadero.setBaseDatos(baseDatos);
+        encargadoInventario.setBaseDatos(baseDatos);
+        inventarioIngredientes.setBaseDatos(baseDatos);
+        inventarioPanes.setBaseDatos(baseDatos);
+    }
+
+void ControladorGeneral::cargarRecetas() {
+    const auto& lineas = baseDatos.obtenerDatos("recetas.txt");
+
+    for (const std::string& linea : lineas) {
+
+        // Ej: "PanBlanco;Harina:kg:500;Sal:g:10;Agua:ml:300;"
+
+        size_t p = linea.find(';');
+        if (p == std::string::npos) continue;
+
+        std::string nombre = linea.substr(0, p);
+        std::map<Ingredientes, double> ingMap;
+
+        std::string resto = linea.substr(p + 1);
+        size_t ini = 0;
+
+        while (true) {
+            size_t fin = resto.find(';', ini);
+            if (fin == std::string::npos) break;
+
+            std::string bloque = resto.substr(ini, fin - ini);
+            ini = fin + 1;
+
+            // formato: Harina:kg:500
+            size_t p1 = bloque.find(':');
+            size_t p2 = bloque.find(':', p1 + 1);
+
+            if (p1 == std::string::npos || p2 == std::string::npos) continue;
+
+            std::string ing = bloque.substr(0, p1);
+            std::string unidad = bloque.substr(p1 + 1, p2 - (p1 + 1));
+            double cantidad = std::stod(bloque.substr(p2 + 1));
+
+            ingMap[ Ingredientes(ing, unidad) ] = cantidad;
+        }
+
+        recetas.push_back( Recetas(nombre, ingMap.size(), ingMap) );
+    }
 }

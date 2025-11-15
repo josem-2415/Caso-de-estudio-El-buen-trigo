@@ -27,3 +27,33 @@ Panes& Stock::buscarPan(std::string& nombrePan) {
     // Si no lo encuentra:
     throw std::runtime_error("Pan no encontrado en Stock::buscarPan");
 }
+
+void Stock::setBaseDatos(BaseDeDatos& bd) {
+    this->bd = &bd;
+}
+
+void Stock::cargarDesdeBD(BaseDeDatos& bd, const std::vector<Recetas>& recetas) {
+
+    for (const std::string& linea : bd.obtenerDatos("stock.txt")) {
+
+        // Formato: PanBlanco;20;
+
+        size_t p = linea.find(';');
+        if (p == std::string::npos) continue;
+
+        std::string nombre = linea.substr(0, p);
+        int cantidad = std::stoi(linea.substr(p + 1));
+
+        // Buscar la receta asociada
+        const Recetas* recPtr = nullptr;
+        for (const auto& r : recetas) {
+            if (r.getNombre() == nombre) {
+                recPtr = &r;
+                break;
+            }
+        }
+        if (!recPtr) continue;
+
+        panes.push_back( Panes(nombre, cantidad, *recPtr) );
+    }
+}

@@ -1,12 +1,12 @@
-harina,gramos,10000
-huevos,unidad,1000
-agua,mililitros,20000
-mantequilla,cuartos,40000
-aceite,mililitros,10000
-levadura,gramos,40000
-queso,gramos,50000
-esencia-vainilla,mililitros,50000
-esencia-chocolate,mililitros,50000
-arequipe,gramos,10000
-azucar,gramos,10000
-sal,gramos,10000
+harina --- gramos --- 10000 ;
+huevos --- unidad --- 1000 ;
+agua --- mililitros --- 20000 ;
+mantequilla --- cuartos --- 40000 ;
+aceite --- mililitros --- 10000 ;
+levadura --- gramos --- 40000 ;
+queso --- gramos --- 50000 ;
+esencia-vainilla --- mililitros --- 50000 ;
+esencia-chocolate --- mililitros --- 50000 ;
+arequipe --- gramos --- 10000 ;
+azucar --- gramos --- 10000 ;
+sal --- gramos --- 10000 ;

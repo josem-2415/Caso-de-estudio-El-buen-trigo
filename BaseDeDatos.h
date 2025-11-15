@@ -36,6 +36,8 @@ public:
     // Sobrescribe un archivo completo con nuevas líneas crudas
     void sobrescribirArchivo(const std::string& nombreArchivo, const std::vector<std::string>& lineas);
 
+    // Obtiene todas las líneas crudas de un archivo
+    std::vector<std::string> obtenerDatos(const std::string& nombreArchivo);
 };
 
 #endif

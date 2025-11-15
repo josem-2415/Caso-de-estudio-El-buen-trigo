@@ -80,3 +80,6 @@ void BaseDeDatos::sobrescribirArchivo(const std::string& nombreArchivo, const st
     datos[nombreArchivo] = lineas;
 }
 
+std::vector<std::string> BaseDeDatos::obtenerDatos(const std::string& nombreArchivo) {
+    return datos[nombreArchivo];
+}

@@ -1,7 +1,8 @@
 ===== REPORTE DE INVENTARIO Y STOCK =====
 
 [Ingredientes]
-- mierda---gramos---3
-  ¡Alerta! Nivel bajo
 
 [Productos]
+- pan-cacho: 50 unidades
+- pan-royal: 50 unidades
+- pandebono: 5 unidades

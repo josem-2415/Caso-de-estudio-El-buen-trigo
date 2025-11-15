@@ -10,7 +10,7 @@
 
 class EncargadoInventario {
 private:
-    BaseDeDatos bd;
+    BaseDeDatos* bd;
 public:
     EncargadoInventario();
 
@@ -20,6 +20,7 @@ public:
     void consultarInventario(const Inventario& inv);
     void verificarNivelMinimo(const Inventario& inv);
     void consultarStock(VistaAdministrador& inv, const Stock& stock) const;
+    void setBaseDatos(BaseDeDatos& bd);
 };
 
 #endif // ENCARGADOINVENTARIO_H

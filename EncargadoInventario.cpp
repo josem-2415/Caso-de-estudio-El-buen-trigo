@@ -18,7 +18,7 @@ void EncargadoInventario::registrarIngrediente(Inventario& inv) {
     linea = nombre + " --- " + unidad + " --- " + std::to_string(cantidad) + " ; ";
 
     std::cout << " Ingrediente registrado con éxito.\n";
-    bd.agregarLinea("ingredientes.txt", linea);
+    bd->agregarLinea("ingredientes.txt", linea);
 }
 
 void EncargadoInventario::editarIngrediente(Inventario& inv) {
@@ -70,4 +70,8 @@ void EncargadoInventario::consultarStock(VistaAdministrador& inv, const Stock& s
     for (const auto& p : stockPanes.getVectorPanes()){
         std::cout << "- " << p.getNombre() << ": " << p.getStock() << " unidades\n";
     }
+}
+
+void EncargadoInventario::setBaseDatos(BaseDeDatos& bd) {
+    this->bd = &bd;
 }

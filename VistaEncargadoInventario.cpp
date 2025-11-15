@@ -33,3 +33,7 @@ int VistaEncargadoInventario::obtenerOpcionMenu() {
     std::cin >> opcion;
     return opcion;
 }
+
+void VistaEncargadoInventario::mostrarAlertasReposicion() {
+    std::cout << "\n¡Alerta! Algunos ingredientes están por debajo del nivel mínimo de reposición.\n";
+}

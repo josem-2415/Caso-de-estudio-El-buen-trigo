@@ -27,6 +27,7 @@ class Stock{
 
     private:  //Atributo de la clase 
         std::vector<Panes> panes;
+        BaseDeDatos* bd;
 
     public:  //Métodos de la clase
         Stock();  //Constructor de la clase
@@ -38,6 +39,10 @@ class Stock{
         void agregarPan(const Panes& nuevoPan, Inventario& inventario);
         void eliminarPanes(std::string& nombrePan, int cantidadEliminar);
         Panes& buscarPan(std::string& nombrePan);
+
+        void setBaseDatos(BaseDeDatos& bd);
+        void cargarDesdeBD(BaseDeDatos& bd, const std::vector<Recetas>& recetas);
+
 };
 
 

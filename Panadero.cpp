@@ -23,7 +23,7 @@ void Panadero::registrarReceta(std::vector<Recetas>& recetas, const Recetas& nue
 
     recetas.push_back(receta);
     std::cout << "[Panadero] Receta registrada con éxito.\n";
-    bd.agregarLinea("recetas.txt", linea);
+    bd->agregarLinea("recetas.txt", linea);
 }
 
 // Modifica una receta existente (reemplaza el objeto)
@@ -46,7 +46,7 @@ void Panadero::modificarReceta(std::vector<Recetas>& recetas, const Recetas& rec
             break;
         }
     }
-    bd.sobrescribirArchivo("recetario.txt", nuevasLineas);
+    bd->sobrescribirArchivo("recetario.txt", nuevasLineas);
 
     std::cout << "[Panadero] Receta modificada con éxito.\n";
 }
@@ -57,6 +57,7 @@ void Panadero::producirPan(const std::string& nombreReceta, Inventario& inventar
     std::string nombreDeReceta;
     nombreDeReceta = vista.obtenerNombreReceta();
     int cantidadProduccion = vista.obtenerCantidadProduccion();
+    
     VistaEncargadoInventario veinv;
     if (cantidadProduccion<0){
         veinv.ingredienteNegativo();
@@ -84,5 +85,9 @@ void Panadero::producirPan(const std::string& nombreReceta, Inventario& inventar
     Panes nuevoPan(nombreReceta, cantidadProduccion, *recetaSeleccionada);
     stockDePanes.agregarPan(nuevoPan, inventario);
     std::cout << "[Panadero] Producción completada. Se han producido " << cantidadProduccion << " unidades de " << nombreReceta << ".\n";
-    bd.agregarLinea("stock.txt", nombreReceta + ";" + std::to_string(cantidadProduccion) + ";");
+    bd->agregarLinea("stock.txt", nombreReceta + ";" + std::to_string(cantidadProduccion) + ";");
+}
+
+void Panadero::setBaseDatos(BaseDeDatos& bd) {
+    this->bd = &bd;
 }

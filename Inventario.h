@@ -30,7 +30,7 @@ class Inventario{
 
   private:  //Atributo de la clase
     std::map<Ingredientes, double> ingredientes;
-    BaseDeDatos bd;
+    BaseDeDatos* bd;
 
   public:  //Métodos de la clase
     Inventario();  // Constructor de la clase
@@ -43,6 +43,9 @@ class Inventario{
     void restarCantidadIngrediente(const std::string& nombreIngrediente, double cantidad);
     const std::map<Ingredientes, double>& getIngredientes() const;
     const double getCantidadIngrediente(const std::string& nombreIngrediente) const;
+
+    void setBaseDatos(BaseDeDatos& bd);
+    void cargarDesdeBD(BaseDeDatos& bd);
 };
 
 #endif // INVENTARIO_H

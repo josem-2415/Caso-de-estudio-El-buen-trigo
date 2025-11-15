@@ -1,3 +1,3 @@
-pan-cacho;harina:gramos:100,sal:gramos:2,azucar:gramos:4,agua:mililitros:580,mantequilla:gramos:100,levadura:gramos:10,
-pan-royal;harina:gramos:100,huevos:unidad:2,agua:gramos:20,mantequilla:gramos:30,levadura:gramos:10,
-pandebono;harina:gramos:500,huevo:unidad:2,sal:gramos:20,azucar:gramos:30,mantequilla:gramos:100,queso:gramos:500,
+pan-cacho;harina:gramos:100;sal:gramos:2;azucar:gramos:4;agua:mililitros:580;mantequilla:gramos:100;levadura:gramos:10;
+pan-royal;harina:gramos:100;huevos:unidad:2;agua:mililitros:20;mantequilla:gramos:30;levadura:gramos:10;
+pandebono;harina:gramos:500;huevo:unidad:2;sal:gramos:20;azucar:gramos:30;mantequilla:gramos:100;queso:gramos:500;

@@ -45,6 +45,9 @@ public:
     void ejecutarMenuPanadero(int opcion);
     void ejecutarMenuEncargado(int opcion);
     void ejecutarMenuAdministrador(int opcion);
+
+    void inicializarDependencias();
+    void cargarRecetas();
 };
 
 #endif // CONTROLADORGENERAL_H

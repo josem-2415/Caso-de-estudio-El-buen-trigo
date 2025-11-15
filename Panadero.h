@@ -24,7 +24,7 @@ Colaboradores:
 
 class Panadero {
 private:
-    BaseDeDatos bd; 
+    BaseDeDatos* bd;
 public:
     Panadero();
 
@@ -37,8 +37,7 @@ public:
     // Produce pan con base en una receta existente
     void producirPan(const std::string& nombreReceta, Inventario& inventario, Stock& stockDePanes, const std::vector<Recetas>& recetas);
 
-    // Consulta el stock de panes (devuelve el vector para que la Vista lo muestre)
-    std::vector<Panes> consultarStock(const Stock& stockDePanes) const;
+    void setBaseDatos(BaseDeDatos& bd);
 };
 
 #endif // PANADERO_H

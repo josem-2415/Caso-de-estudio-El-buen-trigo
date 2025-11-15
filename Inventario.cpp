@@ -13,7 +13,9 @@ void Inventario::agregarIngrediente(const Ingredientes& nuevoIngrediente, double
         return;
     }
     ingredientes.insert({nuevoIngrediente, cantidad});
-
+    std::string linea;
+    linea = nuevoIngrediente.getNombre() + ";" + nuevoIngrediente.getUnidadMedida() + ";" + std::to_string(cantidad);
+    bd->agregarLinea("ingredientes.txt", linea);
 }
 
 void Inventario::eliminarIngrediente(const std::string& nombreIngrediente){
@@ -39,7 +41,7 @@ void Inventario::eliminarIngrediente(const std::string& nombreIngrediente){
     }
 
     // 3. Sobrescribir el archivo completo
-    bd.sobrescribirArchivo("ingredientes.txt", nuevasLineas);
+    bd->sobrescribirArchivo("ingredientes.txt", nuevasLineas);
 }
 
 void Inventario::editarIngrediente(const std::string& nombreIngrediente, double nuevoStock) { 
@@ -68,7 +70,7 @@ Ingredientes Inventario::buscarIngrediente(const std::string& nombreIngrediente)
     }
 
     // 3. Sobrescribir el archivo completo
-    bd.sobrescribirArchivo("ingredientes.txt", nuevasLineas);
+    bd->sobrescribirArchivo("ingredientes.txt", nuevasLineas);
     return Ingredientes(); // o lanzar una excepción si el ingrediente no se encuentra
 }
 
@@ -102,4 +104,25 @@ const double Inventario::getCantidadIngrediente(const std::string& nombreIngredi
         }
     }
     return 0.0; // o lanzar una excepción si el ingrediente no se encuentra
+}
+
+void Inventario::setBaseDatos(BaseDeDatos& bd) {
+    this->bd = &bd;
+}
+
+void Inventario::cargarDesdeBD(BaseDeDatos& bd) {
+    for (const std::string& linea : bd.obtenerDatos("ingredientes.txt")) {
+
+        // Formato esperado: nombre;unidad;cantidad
+        size_t p1 = linea.find(';');
+        size_t p2 = linea.find(';', p1 + 1);
+
+        if (p1 == std::string::npos || p2 == std::string::npos) continue;
+
+        std::string nombre = linea.substr(0, p1);
+        std::string unidad = linea.substr(p1 + 1, p2 - (p1 + 1));
+        double cantidad = std::stod(linea.substr(p2 + 1));
+
+        ingredientes[ Ingredientes(nombre, unidad) ] = cantidad;
+    }
 }
