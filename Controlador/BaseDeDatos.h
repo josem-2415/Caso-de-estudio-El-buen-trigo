@@ -1,3 +1,15 @@
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       ControladorGeneral
+Responsabilidades:        
+    Se encarga de guardar los datos de panes y de ingredientes
+Colaboradores:            
+    Colabora con las clase panes e ingredientes, para usar los gettters y 
+    metodos y ponerlos en una archivo json
+===============================================================================
+*/
 #ifndef BASEDEDATOS_H
 #define BASEDEDATOS_H
 
