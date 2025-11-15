@@ -16,10 +16,6 @@ void VistaEncargadoInventario::mostrarInventarioIngredientes(const std::map<Ingr
     }
 }
 
-void VistaEncargadoInventario::mostrarAlertasReposicion() {
-    std::cout << "\n[VistaEncargadoInventario] Alerta! cantidad insuficiente de ingredientes.\n";
-}
-
 bool VistaEncargadoInventario::advertenciaEliminacionIngrediente() {
     char respuesta;
     std::cout << "\n¿Está seguro que desea eliminar este ingrediente? (s/n): ";

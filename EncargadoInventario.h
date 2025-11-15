@@ -29,7 +29,7 @@ public:
     void editarIngrediente(Inventario& inv);
     void eliminarIngrediente(Inventario& inv);
     void consultarInventario(const Inventario& inv);
-    void verificarNivelMinimo(VistaEncargadoInventario& inv);
+    void verificarNivelMinimo(const Inventario& inv);
     void consultarStock(VistaAdministrador& inv, const Stock& stock) const;
 };
 

@@ -21,26 +21,6 @@ void Administrador::generarReporte(const Inventario& inv, const Stock& stockDePa
     std::cout << "Reporte impreso exitosamente.\n";
 }
 
-/*void Administrador::exportarReporteTxt(const VistaAdministrador& vadm) {
-    ofstream file("reporte_inventario.txt");
-    if (!file.is_open()) {
-        cout << "Error al crear el archivo.\n";
-        return;
-    }
-
-    VistaAdministrador vista;
-
-    file << "===== REPORTE DE INVENTARIO Y STOCK =====\n\n";
-    
-    file << "[Ingredientes]\n";
-    vista.mostrarReporteInventario(std::map<Ingredientes, double>());
-
-    file << "\n[Stock]\n";
-    vista.mostrarReporteStock(std::vector<Panes>());
-
-    file.close();
-    cout << "Reporte exportado exitosamente como 'reporte_inventario.txt'.\n";
-}*/
 void Administrador::exportarReporteTxt(const Inventario& inv, const Stock& stockDePanes) {
     ofstream file("reporte_inventario.txt");
     if (!file.is_open()) {
@@ -53,7 +33,7 @@ void Administrador::exportarReporteTxt(const Inventario& inv, const Stock& stock
     file << "[Ingredientes]\n";
     for (const auto& i : inv.getIngredientes()) {
         file << "- " << i.first.getNombre() << "---" << i.first.getUnidadMedida() << "---" << i.second << "\n";
-        if (inv.getCantidadIngrediente(i.first.getNombre()) < 5.0) {
+        if (inv.getCantidadIngrediente(i.first.getNombre()) < 50.0) {
             file << "  ¡Alerta! Nivel bajo";
         }
         file << "\n";

@@ -49,7 +49,7 @@ void ControladorGeneral::ejecutarMenuEncargado(int opcion) {
                 break;
             }
             case 4:{
-                encargadoInventario.verificarNivelMinimo(vinv);
+                encargadoInventario.verificarNivelMinimo(inventarioIngredientes);
                 break;
             }
             case 5:
