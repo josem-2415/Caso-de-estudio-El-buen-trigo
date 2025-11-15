@@ -17,11 +17,13 @@ void Stock::agregarPan(const Panes& nuevoPan, Inventario& inventario) {
 void Stock::eliminarPanes(std::string& nombrePan, int cantidadEliminar)
     {buscarPan(nombrePan).setStock(buscarPan(nombrePan).getStock() - cantidadEliminar); }
 
-Panes& Stock::buscarPan(std::string& nombrePan){
-    for(int i = 0; i <= panes.size(); i++){
-        if(panes.at(i).getNombre() == nombrePan){
+Panes& Stock::buscarPan(std::string& nombrePan) {
+    for (size_t i = 0; i < panes.size(); i++) {   // < en vez de <=
+        if (panes[i].getNombre() == nombrePan) {  // no hace falta .at()
             return panes[i];
-            break;
         }
     }
+
+    // Si no lo encuentra:
+    throw std::runtime_error("Pan no encontrado en Stock::buscarPan");
 }

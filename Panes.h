@@ -15,7 +15,7 @@ Colaboradores:
 */
 
 #ifndef PANES_H
-#define PANES_h
+#define PANES_H
 
 #include "Recetas.h"
 #include <string>
@@ -41,4 +41,4 @@ class Panes{
         void setReceta(const Recetas& recetaPan);
 };
 
-#endif PANES_H
+#endif // PANES_H

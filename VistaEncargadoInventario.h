@@ -2,14 +2,16 @@
 #define VISTA_ENCARGADO_INVENTARIO_H
 
 #include <iostream>
+#include <map>
+#include "Ingredientes.h"
 
 class VistaEncargadoInventario {
 public:
     void mostrarMenuEncargadoInventario();
-    void mostrarInventarioIngredientes();
-    void mostrarAlertasReposicion();
+    void mostrarInventarioIngredientes(const std::map<Ingredientes, double>& inventario);
     bool advertenciaEliminacionIngrediente();
     void ingredienteNegativo();
+    int obtenerOpcionMenu();
 };
 
 #endif // VISTA_ENCARGADO_INVENTARIO_H

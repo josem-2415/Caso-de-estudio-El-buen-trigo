@@ -4,17 +4,20 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "../Modelo/Ingredientes.h"
+#include "Ingredientes.h"
+#include "Recetario.h"
 
 class VistaPanadero {
+private:
+    Recetario recetas;
 public:
     void mostrarMenuPanadero();
+    int obtenerOpcionMenu();
     std::string obtenerNombreReceta();
     int obtenerCantidadIngredientes();
     std::map<Ingredientes, double> obtenerIngredientesReceta();
     void obtenerDatosRegistroReceta();
     int obtenerCantidadProduccion();
-    void mostrarInventarioPanes();
     void mostrarInventarioRecetas();
     void mostrarAdvertenciasProduccion();
 };

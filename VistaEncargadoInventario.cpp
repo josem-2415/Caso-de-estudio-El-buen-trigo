@@ -4,18 +4,16 @@ void VistaEncargadoInventario::mostrarMenuEncargadoInventario() {
     std::cout << "\n--- Menú Encargado de Inventario ---\n";
     std::cout << "1. Registrar Ingrediente\n";
     std::cout << "2. Consultar Inventario\n";
-    std::cout << "3. Ver Alertas de Reposición\n";
-    std::cout << "4. Salir\n";
-                int opcion;
-                std::cin >> opcion;
+    std::cout << "3. Consultar Stock\n";
+    std::cout << "4. Ver Alertas de Reposición\n";
+    std::cout << "5. Salir\n";
 }
 
-void VistaEncargadoInventario::mostrarInventarioIngredientes() {
+void VistaEncargadoInventario::mostrarInventarioIngredientes(const std::map<Ingredientes, double>& inventario) {
     std::cout << "\n[VistaEncargadoInventario] Mostrando ingredientes registrados...\n";
-}
-
-void VistaEncargadoInventario::mostrarAlertasReposicion() {
-    std::cout << "\n[VistaEncargadoInventario] Mostrando alertas de reposición...\n";
+    for (const auto& item : inventario) {
+        std::cout << "Ingrediente: " << item.first.getNombre() << " Unidad de medida: " << item.first.getUnidadMedida() << ", Cantidad: " << item.second << "\n";
+    }
 }
 
 bool VistaEncargadoInventario::advertenciaEliminacionIngrediente() {
@@ -27,4 +25,11 @@ bool VistaEncargadoInventario::advertenciaEliminacionIngrediente() {
 
 void VistaEncargadoInventario::ingredienteNegativo() {
     std::cout << "\n¡Advertencia! No se permite registrar stock negativo.\n";
+}
+
+int VistaEncargadoInventario::obtenerOpcionMenu() {
+    int opcion;
+    std::cout << "\nSeleccione una opción: ";
+    std::cin >> opcion;
+    return opcion;
 }

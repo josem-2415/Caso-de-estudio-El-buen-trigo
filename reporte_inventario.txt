@@ -1,20 +1,7 @@
 ===== REPORTE DE INVENTARIO Y STOCK =====
 
 [Ingredientes]
-- harina: 10000 gramos
-- huevos: 1000 unidad
-- agua: 20000 mililitros
-- mantequilla: 40000 cuartos
-- aceite: 10000 mililitros
-- levadura: 40000 gramos
-- queso: 50000 gramos
-- esencia-vainilla: 50000 mililitros
-- esencia-chocolate: 50000 mililitros
-- arequipe: 10000 gramos
-- azucar: 10000 gramos
-- sal: 10000 gramos
+- mierda---gramos---3
+  ¡Alerta! Nivel bajo
 
 [Productos]
-- pan-cacho: 50 unidades
-- pan-royal: 50 unidades
-- pandebono: 5 unidades

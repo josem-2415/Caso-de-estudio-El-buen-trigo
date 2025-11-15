@@ -1,4 +1,4 @@
-#include <Ingredientes.h>
+#include "Ingredientes.h"
 
 Ingredientes::Ingredientes(std::string n, std::string um) : nombre(n), unidadMedida(um) {}
 Ingredientes::Ingredientes(){}

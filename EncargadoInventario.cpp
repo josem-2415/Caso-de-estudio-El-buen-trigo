@@ -14,7 +14,11 @@ void EncargadoInventario::registrarIngrediente(Inventario& inv) {
     std::cin >> cantidad;
 
     inv.agregarIngrediente(Ingredientes(nombre, unidad), cantidad);
+    std::string linea;
+    linea = nombre + " --- " + unidad + " --- " + std::to_string(cantidad) + " ; ";
+
     std::cout << " Ingrediente registrado con éxito.\n";
+    bd.agregarLinea("ingredientes.txt", linea);
 }
 
 void EncargadoInventario::editarIngrediente(Inventario& inv) {
@@ -30,27 +34,40 @@ void EncargadoInventario::editarIngrediente(Inventario& inv) {
 
 void EncargadoInventario::eliminarIngrediente(Inventario& inv){
     std::string nombre;
+    VistaEncargadoInventario vista;
 
     std::cout << "Nombre del ingrediente a eliminar: ";
     std::cin >> nombre;
     
     inv.eliminarIngrediente(nombre);
+    vista.advertenciaEliminacionIngrediente();
     std::cout << " Ingrediente eliminado con éxito.\n";
 }
 
 void EncargadoInventario::consultarInventario(const Inventario& inv) {
-    const auto& ingredientes = inv.getIngredientes();
-    if (ingredientes.empty()) {
-        std::cout << " No hay ingredientes registrados.\n";
-        return;
+    std::cout << "[Ingredientes]\n";
+    for (const auto& i : inv.getIngredientes()) {
+        std::cout << "- " << i.first.getNombre() << "---" << i.first.getUnidadMedida() << "---" << i.second << "\n";
+        if (inv.getCantidadIngrediente(i.first.getNombre()) < 50.0) {
+            std::cout << "  ¡Alerta! Nivel bajo";
+        }
+        std::cout << "\n";
     }
-
-    std::cout << "\n--- Inventario de Ingredientes ---\n";
-    for (const auto& i : ingredientes)
-        std::cout << i.first.getNombre() << " (" << i.second << " " << i.first.getUnidadMedida() << ")\n";
 }
 
-void EncargadoInventario::verificarNivelMinimo(VistaEncargadoInventario& vinv) {
+void EncargadoInventario::verificarNivelMinimo(const Inventario& inv) {
     std::cout << "\n--- Alertas de Reposición ---\n";
-    vinv.mostrarAlertasReposicion();
+    for (const auto& i : inv.getIngredientes()) {
+        if (inv.getCantidadIngrediente(i.first.getNombre()) < 5.0) {
+            
+            std::cout << i.first.getNombre() <<" ¡Alerta! Nivel bajo";
+        }
+        std::cout << "\n";
+    }
+}
+
+void EncargadoInventario::consultarStock(VistaAdministrador& inv, const Stock& stockPanes) const {
+    for (const auto& p : stockPanes.getVectorPanes()){
+        std::cout << "- " << p.getNombre() << ": " << p.getStock() << " unidades\n";
+    }
 }
