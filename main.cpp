@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include "Controlador/Controlador.h"
 #include "Modelo/Panadero.h"
@@ -43,6 +42,3 @@ int main() {
     cout << "\nGracias por usar El Buen Trigo. ¡Hasta pronto!\n";
     return 0;
 }
-=======
-
->>>>>>> 30f205684ecc2689dc0c56a3dd44bd4c690b4088

@@ -1,21 +1,34 @@
 
+
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       EncargadoInventario
+Responsabilidades:        
+    ...
+Colaboradores:            
+    ...
+===============================================================================
+*/
+
 #ifndef ENCARGADOINVENTARIO_H
 #define ENCARGADOINVENTARIO_H
 
-#include "Modelo/InventarioPanes.h"
-#include "Modelo/InventarioIngredientes.h"
+#include "Modelo/Stock.h"
+#include "Modelo/Inventario.h"
+#include "Vista/VistaEncargadoInventario.h"
 #include <iostream>
-using namespace std;
 
 class EncargadoInventario {
 public:
     EncargadoInventario();
 
-    void registrarIngrediente(InventarioIngredientes& inv);
-    void editarIngrediente(InventarioIngredientes& inv);
-    void eliminarIngrediente(InventarioIngredientes& inv);
-    void consultarInventario(const InventarioIngredientes& inv);
-    void verificarNivelMinimo(const InventarioIngredientes& inv);
+    void registrarIngrediente(Inventario& inv);
+    void editarIngrediente(Inventario& inv);
+    void eliminarIngrediente(Inventario& inv);
+    void consultarInventario(const Inventario& inv);
+    void verificarNivelMinimo(VistaEncargadoInventario& inv);
 };
 
 #endif
@@ -36,4 +49,5 @@ Colaboradores:
     ControladorGeneral
 ===============================================================================
 */
+
 

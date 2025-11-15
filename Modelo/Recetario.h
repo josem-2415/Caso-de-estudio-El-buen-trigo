@@ -13,19 +13,19 @@ Colaboradores:
 ===============================================================================
 */
 
-#ifndef INVENTARIORECETAS
-#define INVENTARIORECETAS
+#ifndef RECETARIO_H
+#define RECETARIO_H
 
 #include "Recetas.h"
 #include <vector>
 
-class InventarioRecetas{
+class Recetario{
 
     private:  //Atributos de la clase
         std::vector<Recetas> recetas; 
     
     public:  //Métodos de la clase
-        InventarioRecetas();  //Constructor de la clase
+        Recetario();  //Constructor de la clase
 
         //Getter de la clase
         std::vector<Recetas> getRecetas() const;
@@ -33,7 +33,7 @@ class InventarioRecetas{
         //Métodos para la gestión de las recetas de la panaderia
         void agregarReceta(const Recetas& recetaNueva);
         void eliminarReceta(const std::string& nombreReceta);
-        Recetas& buscarReceta(const std::string& nombreReceta);
+        Recetas* buscarReceta(const std::string& nombreReceta);
 };
 
-#endif INVENTARIORECETAS
+#endif // RECETARIO_H

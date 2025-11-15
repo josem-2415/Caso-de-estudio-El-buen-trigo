@@ -2,80 +2,55 @@
 
 EncargadoInventario::EncargadoInventario(){}
 
-void EncargadoInventario::registrarIngrediente(InventarioIngredientes& inv) {
-    string nombre, unidad;
-    float cantidad, minimo;
+void EncargadoInventario::registrarIngrediente(Inventario& inv) {
+    std::string nombre, unidad;
+    float cantidad;
 
-    cout << "Nombre del ingrediente: ";
-    cin >> nombre;
-    cout << "Unidad de medida: ";
-    cin >> unidad;
-    cout << "Cantidad disponible: ";
-    cin >> cantidad;
-    cout << "Nivel mínimo de alerta: ";
-    cin >> minimo;
+    std::cout << "Nombre del ingrediente: ";
+    std::cin >> nombre;
+    std::cout << "Unidad de medida: ";
+    std::cin >> unidad;
+    std::cout << "Cantidad disponible: ";
+    std::cin >> cantidad;
 
-    inv.agregarIngrediente(Ingrediente(nombre, unidad, cantidad, minimo));
-    cout << " Ingrediente registrado con éxito.\n";
+    inv.agregarIngrediente(Ingredientes(nombre, unidad), cantidad);
+    std::cout << " Ingrediente registrado con éxito.\n";
 }
 
-void EncargadoInventario::editarIngrediente(InventarioIngredientes& inv) {
-    string nombre;
+void EncargadoInventario::editarIngrediente(Inventario& inv) {
+    std::string nombre;
 
-    auto ingredientes = inv.getIngredientes();
-
-    cout << "Nombre del ingrediente a editar: ";
-    cin >> nombre;
+    std::cout << "Nombre del ingrediente a editar: ";
+    std::cin >> nombre;
     
-    for (auto& i : ingredientes) {
-        if (i.getNombre() == nombre) {
-            string nuevaNombre, nuevaUnidad;
-            float nuevaCantidad, nuevoMinimo;
-
-            cout << "Nuevo nombre para " << nombre << ": ";
-            cin >> nuevaNombre;
-            cout << " Nueva unidad de medida: ";
-            cin >> nuevaUnidad;
-            cout << " Nueva cantidad disponible: ";
-            cin >> nuevaCantidad;
-            cout << " Nuevo nivel mínimo de alerta: ";
-            cin >> nuevoMinimo;
-
-            i = Ingrediente(nuevaNombre, nuevaUnidad, nuevaCantidad, nuevoMinimo);
-            cout << " Ingrediente actualizado con éxito.\n";
-            return;
-        }
-    }
+    inv.buscarIngrediente(nombre);
+    
+    std::cout << " Ingrediente actualizado con éxito.\n";
 }
 
-void EncargadoInventario::eliminarIngrediente(InventarioIngredientes& inv){
-    string nombre;
-    auto ingredientes = inv.getIngredientes();
+void EncargadoInventario::eliminarIngrediente(Inventario& inv){
+    std::string nombre;
 
-    cout << "Nombre del ingrediente a eliminar: ";
-    cin >> nombre;
-    for (auto it = ingredientes.begin(); it != ingredientes.end(); ++it) {
-        if (it->getNombre() == nombre) {
-            ingredientes.erase(it);
-            cout << " Ingrediente eliminado con éxito.\n";
-            return;
-        }
-    }
+    std::cout << "Nombre del ingrediente a eliminar: ";
+    std::cin >> nombre;
+    
+    inv.eliminarIngrediente(nombre);
+    std::cout << " Ingrediente eliminado con éxito.\n";
 }
 
-void EncargadoInventario::consultarInventario(const InventarioIngredientes& inv) {
-    auto ingredientes = inv.getIngredientes();
+void EncargadoInventario::consultarInventario(const Inventario& inv) {
+    const auto& ingredientes = inv.getIngredientes();
     if (ingredientes.empty()) {
-        cout << " No hay ingredientes registrados.\n";
+        std::cout << " No hay ingredientes registrados.\n";
         return;
     }
 
-    cout << "\n--- Inventario de Ingredientes ---\n";
+    std::cout << "\n--- Inventario de Ingredientes ---\n";
     for (const auto& i : ingredientes)
-        cout << i.getNombre() << " (" << i.getStock() << " " << i.getUnidadMedida() << ")\n";
+        std::cout << i.first.getNombre() << " (" << i.second << " " << i.first.getUnidadMedida() << ")\n";
 }
 
-void EncargadoInventario::verificarNivelMinimo(const InventarioIngredientes& inv) {
-    cout << "\n--- Alertas de Reposición ---\n";
-    inv.mostrarAlertas();
+void EncargadoInventario::verificarNivelMinimo(VistaEncargadoInventario& vinv) {
+    std::cout << "\n--- Alertas de Reposición ---\n";
+    vinv.mostrarAlertasReposicion();
 }

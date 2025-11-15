@@ -1,4 +1,16 @@
 
+/*
+===============================================================================
+                                TARJETA CRC
+===============================================================================
+Nombre de la clase:       ControladorGeneral
+Responsabilidades:        
+    ...
+Colaboradores:            
+    ...
+===============================================================================
+*/
+
 #ifndef CONTROLADORGENERAL_H
 #define CONTROLADORGENERAL_H
 
@@ -6,9 +18,9 @@
 #include "EncargadoInventario.h"
 #include "Administrador.h"
 #include "BaseDeDatos.h"
-#include "../Modelo/InventarioIngredientes.h"
-#include "../Modelo/InventarioPanes.h"
-#include "../Modelo/Receta.h"
+#include "../Modelo/Inventario.h"
+#include "../Modelo/Stock.h"
+#include "../Modelo/Recetas.h"
 #include <vector>
 
 class ControladorGeneral {
@@ -18,9 +30,9 @@ private:
     Administrador administrador;
     BaseDeDatos baseDatos;
 
-    InventarioIngredientes inventarioIngredientes;
-    InventarioPanes inventarioPanes;
-    std::vector<Receta> recetas;
+    Inventario inventarioIngredientes;
+    Stock inventarioPanes;
+    std::vector<Recetas> recetas;
 
 public:
     ControladorGeneral();
@@ -32,6 +44,7 @@ public:
 };
 
 #endif // CONTROLADORGENERAL_H
+
 
 /*
 ===============================================================================
