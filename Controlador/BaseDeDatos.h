@@ -2,7 +2,7 @@
 ===============================================================================
                                 TARJETA CRC
 ===============================================================================
-Nombre de la clase:       ControladorGeneral
+Nombre de la clase:       BaseDeDatos
 Responsabilidades:        
     Se encarga de guardar los datos de panes y de ingredientes
 Colaboradores:            
