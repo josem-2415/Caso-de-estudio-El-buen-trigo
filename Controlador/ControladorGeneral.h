@@ -39,9 +39,11 @@ public:
 ===============================================================================
 Nombre de la clase:       ControladorGeneral
 Responsabilidades:        
-    ...
+    Se encarga de ejecutar los menus para los diferentes usuarios
 Colaboradores:            
-    ...
+    Adminitrador
+    Panadero
+    BaseDeDatos
 ===============================================================================
 */
->>>>>>> 30f205684ecc2689dc0c56a3dd44bd4c690b4088
+
