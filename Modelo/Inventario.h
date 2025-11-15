@@ -23,12 +23,14 @@ Colaboradores:
 #include "Ingredientes.h"
 #include "Recetas.h"
 #include "Vista/VistaEncargadoInventario.h"
+#include "Controlador/BaseDeDatos.h"
 #include <map>
 
 class Inventario{
 
   private:  //Atributo de la clase
     std::map<Ingredientes, double> ingredientes;
+    BaseDeDatos bd;
 
   public:  //Métodos de la clase
     Inventario();  // Constructor de la clase

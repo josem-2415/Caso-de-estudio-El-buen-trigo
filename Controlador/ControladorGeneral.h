@@ -32,6 +32,9 @@ private:
     Stock inventarioPanes;
     std::vector<Recetas> recetas;
 
+    VistaEncargadoInventario vinv;
+    VistaAdministrador vadm;
+    VistaPanadero vp;
 public:
     ControladorGeneral();
 

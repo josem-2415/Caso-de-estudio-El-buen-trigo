@@ -4,9 +4,8 @@ ControladorGeneral::ControladorGeneral() {}
 
 void ControladorGeneral::ejecutarMenuPanadero(int opcion) {
     do{
-        VistaPanadero vpan;
-        vpan.mostrarMenuPanadero();
-        int opcion = vpan.obtenerOpcionMenu();
+        vp.mostrarMenuPanadero();
+        int opcion = vp.obtenerOpcionMenu();
         switch (opcion) {
             case 1:
                 panadero.registrarReceta(recetas, Recetas());
@@ -15,7 +14,7 @@ void ControladorGeneral::ejecutarMenuPanadero(int opcion) {
                 panadero.modificarReceta(recetas, Recetas());
                 break;
             case 3:
-                panadero.consultarStock(Stock());
+                panadero.consultarStock(inventarioPanes);
                 break;
             case 4:
                 std::cout << "Saliendo del menú de Panadero...\n";
@@ -28,22 +27,18 @@ void ControladorGeneral::ejecutarMenuPanadero(int opcion) {
 
 void ControladorGeneral::ejecutarMenuEncargado(int opcion) {
     do{
-        VistaEncargadoInventario vinv;
         vinv.mostrarMenuEncargadoInventario();
         int opcion = vinv.obtenerOpcionMenu();
         switch (opcion) {
             case 1: {
-                Inventario ingrediente;
-                encargadoInventario.registrarIngrediente(ingrediente);
+                encargadoInventario.registrarIngrediente(inventarioIngredientes);
                 break;
             }
             case 2:{
-                Inventario ingrediente;
-                encargadoInventario.consultarInventario(ingrediente);
+                encargadoInventario.consultarInventario(inventarioIngredientes);
                 break;
             }
             case 3:{
-                VistaEncargadoInventario vinv;
                 encargadoInventario.verificarNivelMinimo(vinv);
                 break;
             }
@@ -58,20 +53,23 @@ void ControladorGeneral::ejecutarMenuEncargado(int opcion) {
 
 void ControladorGeneral::ejecutarMenuAdministrador(int opcion) {
     do{
-        VistaAdministrador vadm;
         vadm.mostrarMenuAdministrador();
         int opcion = vadm.obtenerOpcionMenu();
         switch (opcion) {
             case 1:{
-                VistaAdministrador vadm;
-                administrador.exportarReporteTxt(vadm);
+                
+                administrador.exportarReporteTxt(inventarioIngredientes, inventarioPanes);
                 break;
             }
-            case 2:
+            case 2: {
+                administrador.generarReporte(inventarioIngredientes, inventarioPanes, vadm);
+                break;
+            }
+            case 3:
                 std::cout << "Saliendo del menú de Administrador...\n";
                 break;
             default:
                 break;
         }
-    }while(opcion != 2);
+    }while(opcion != 3);
 }

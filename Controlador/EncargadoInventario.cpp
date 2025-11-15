@@ -14,7 +14,11 @@ void EncargadoInventario::registrarIngrediente(Inventario& inv) {
     std::cin >> cantidad;
 
     inv.agregarIngrediente(Ingredientes(nombre, unidad), cantidad);
+    std::string linea;
+    linea = nombre + " --- " + unidad + " --- " + std::to_string(cantidad) + " ; ";
+
     std::cout << " Ingrediente registrado con éxito.\n";
+    bd.agregarLinea("ingredientes.txt", linea);
 }
 
 void EncargadoInventario::editarIngrediente(Inventario& inv) {

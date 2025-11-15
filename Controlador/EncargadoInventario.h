@@ -15,9 +15,12 @@ Colaboradores:
 #include "Modelo/Stock.h"
 #include "Modelo/Inventario.h"
 #include "Vista/VistaEncargadoInventario.h"
+#include "BaseDeDatos.h"
 #include <iostream>
 
 class EncargadoInventario {
+private:
+    BaseDeDatos bd;
 public:
     EncargadoInventario();
 

@@ -17,11 +17,14 @@ Colaboradores:
 #include "../Modelo/Stock.h"
 #include "../Modelo/Panes.h"
 #include "../Vista/VistaPanadero.h"
+#include "BaseDeDatos.h"
 #include <vector>
 #include <string>
 #include <iostream>
 
 class Panadero {
+private:
+    BaseDeDatos bd; 
 public:
     Panadero();
 

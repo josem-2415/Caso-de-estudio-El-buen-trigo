@@ -23,6 +23,23 @@ void Inventario::eliminarIngrediente(const std::string& nombreIngrediente){
             break;
         }
     }
+    std::vector<std::string> nuevasLineas;
+
+    for (const auto& par : ingredientes) {
+
+        const Ingredientes& ing = par.first;
+        double cantidad = par.second;
+
+        std::string linea = 
+            ing.getNombre() + ";" +
+            ing.getUnidadMedida() + ";" +
+            std::to_string(cantidad);
+
+        nuevasLineas.push_back(linea);
+    }
+
+    // 3. Sobrescribir el archivo completo
+    bd.sobrescribirArchivo("ingredientes.txt", nuevasLineas);
 }
 
 void Inventario::editarIngrediente(const std::string& nombreIngrediente, double nuevoStock) { 
@@ -35,6 +52,23 @@ Ingredientes Inventario::buscarIngrediente(const std::string& nombreIngrediente)
             return it->first;
         }
     }
+    std::vector<std::string> nuevasLineas;
+
+    for (const auto& par : ingredientes) {
+
+        const Ingredientes& ing = par.first;
+        double cantidad = par.second; // o par.first.getCantidad() si tu clase lo maneja así
+
+        std::string linea = 
+            ing.getNombre() + ";" +
+            ing.getUnidadMedida() + ";" +
+            std::to_string(cantidad);
+
+        nuevasLineas.push_back(linea);
+    }
+
+    // 3. Sobrescribir el archivo completo
+    bd.sobrescribirArchivo("ingredientes.txt", nuevasLineas);
     return Ingredientes(); // o lanzar una excepción si el ingrediente no se encuentra
 }
 
