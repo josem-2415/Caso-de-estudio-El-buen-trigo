@@ -7,18 +7,19 @@ void ControladorGeneral::inicializarBaseDeDatos(const std::string& ruta) {
 }
 
 void ControladorGeneral::ejecutarMenuPanadero(int opcion) {
+    int opcionMenu = 0;
     do{
         vp.mostrarMenuPanadero();
-        int opcion = vp.obtenerOpcionMenu();
-        switch (opcion) {
+        opcionMenu = vp.obtenerOpcionMenu();
+        switch (opcionMenu) {
             case 1:
-                panadero.registrarReceta(recetas, Recetas());
+                panadero.registrarReceta(recetas, receta);
                 break;
             case 2:
-                panadero.modificarReceta(recetas, Recetas());
+                panadero.modificarReceta(recetas, receta);
                 break;
             case 3:
-                panadero.consultarStock(inventarioPanes);
+                panadero.producirPan(receta.getNombre(), inventarioIngredientes, inventarioPanes, recetas);
                 break;
             case 4:
                 std::cout << "Saliendo del menú de Panadero...\n";
@@ -26,14 +27,15 @@ void ControladorGeneral::ejecutarMenuPanadero(int opcion) {
             default:
                 break;
         }
-    }while(opcion != 4);
+    }while(opcionMenu != 4);
 }
 
 void ControladorGeneral::ejecutarMenuEncargado(int opcion) {
+    int opcionMenu = 0;
     do{
         vinv.mostrarMenuEncargadoInventario();
-        int opcion = vinv.obtenerOpcionMenu();
-        switch (opcion) {
+        opcionMenu = vinv.obtenerOpcionMenu();
+        switch (opcionMenu) {
             case 1: {
                 encargadoInventario.registrarIngrediente(inventarioIngredientes);
                 break;
@@ -43,30 +45,34 @@ void ControladorGeneral::ejecutarMenuEncargado(int opcion) {
                 break;
             }
             case 3:{
+                encargadoInventario.consultarStock(vadm, inventarioPanes);
+                break;
+            }
+            case 4:{
                 encargadoInventario.verificarNivelMinimo(vinv);
                 break;
             }
-            case 4:
+            case 5:
                 std::cout << "Saliendo del menú de Encargado de Inventario...\n";
                 break;
             default:
                 break;
         }
-    } while(opcion != 4);
+    } while(opcionMenu != 5);
 }
 
 void ControladorGeneral::ejecutarMenuAdministrador(int opcion) {
+    int opcionMenu = 0;
     do{
         vadm.mostrarMenuAdministrador();
-        int opcion = vadm.obtenerOpcionMenu();
-        switch (opcion) {
+        opcionMenu = vadm.obtenerOpcionMenu();
+        switch (opcionMenu) {
             case 1:{
-                
-                administrador.exportarReporteTxt(inventarioIngredientes, inventarioPanes);
+                administrador.generarReporte(inventarioIngredientes, inventarioPanes, vadm);
                 break;
             }
             case 2: {
-                administrador.generarReporte(inventarioIngredientes, inventarioPanes, vadm);
+                administrador.exportarReporteTxt(inventarioIngredientes, inventarioPanes);
                 break;
             }
             case 3:
@@ -75,5 +81,5 @@ void ControladorGeneral::ejecutarMenuAdministrador(int opcion) {
             default:
                 break;
         }
-    }while(opcion != 3);
+    }while(opcionMenu != 3);
 }

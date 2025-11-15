@@ -74,8 +74,10 @@ Ingredientes Inventario::buscarIngrediente(const std::string& nombreIngrediente)
 
 void Inventario::verificarCantIngredientes() const {
     for (const auto& it : ingredientes) {
-        if (it.second < 5.0) { // Suponiendo que 5.0 es el nivel mínimo
-            std::cout << "Alerta: El ingrediente " << it.first.getNombre() << " está por debajo del nivel mínimo.\n";
+        if (it.second < 50.0) { // Suponiendo que 50.0 es el nivel mínimo
+            VistaEncargadoInventario vista;
+            vista.mostrarAlertasReposicion();
+            break;
         }
     }
 }

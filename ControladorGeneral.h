@@ -31,6 +31,7 @@ private:
     Inventario inventarioIngredientes;
     Stock inventarioPanes;
     std::vector<Recetas> recetas;
+    Recetas receta;
 
     VistaEncargadoInventario vinv;
     VistaAdministrador vadm;

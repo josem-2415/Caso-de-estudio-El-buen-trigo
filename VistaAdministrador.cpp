@@ -2,21 +2,20 @@
 
 void VistaAdministrador::mostrarMenuAdministrador() {
     std::cout << "\n--- Menú Administrador ---\n";
-    std::cout << "1. Generar Reporte de Inventario\n";
-    std::cout << "2. Exportar Reporte a TXT\n";
-    std::cout << "3. Ver Resumen General\n";
-    std::cout << "4. Salir\n";
+    std::cout << "1. Generar Reporte a TXT\n";
+    std::cout << "2. Exportar Reporte de Inventario\n";
+    std::cout << "3. Salir\n";
 }
 
 void VistaAdministrador::mostrarReporteInventario(const std::map<Ingredientes, double>& inventario) const {
-    std::cout << "\n[VistaAdministrador] Mostrando reporte de inventario...\n";
+    std::cout << "\n[VistaAdministrador] Mostrando inventario...\n";
     for (const auto& item : inventario) {
         std::cout << "Ingrediente: " << item.first.getNombre() << " Unidad de medida: " << item.first.getUnidadMedida() << ", Cantidad: " << item.second << "\n";
     }
 }
 
 void VistaAdministrador::mostrarReporteStock(const std::vector<Panes>& stock) {
-    std::cout << "\n[VistaAdministrador] Mostrando reporte de stock de productos...\n";
+    std::cout << "\n[VistaAdministrador] Mostrando stock de productos...\n";
     for (const auto& item : stock) {
         std::cout << "Nombre del pan: " << item.getNombre() << " Cantidad: " << item.getStock() << "\n";
     }
@@ -27,10 +26,6 @@ void VistaAdministrador::escribirReporteStock(const std::vector<Panes>& stock) {
     for (const auto& item : stock) {
         std::cout << "Nombre del pan: " << item.getNombre() << " Cantidad: " << item.getStock() << "\n";
     }
-}
-
-void VistaAdministrador::advertenciaExportacion() {
-    std::cout << "\n¡Advertencia! Recuerde guardar los cambios antes de exportar el reporte.\n";
 }
 
 int VistaAdministrador::obtenerOpcionMenu() {

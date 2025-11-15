@@ -58,3 +58,10 @@ void EncargadoInventario::verificarNivelMinimo(VistaEncargadoInventario& vinv) {
     std::cout << "\n--- Alertas de Reposición ---\n";
     vinv.mostrarAlertasReposicion();
 }
+
+void EncargadoInventario::consultarStock(VistaAdministrador& inv, const Stock& stockPanes) const {
+    for (const auto& p : stockPanes.getVectorPanes())
+        std::cout << "- " << p.getNombre() << ": " << p.getStock() << " unidades\n";
+
+    std::cout << "Reporte impreso exitosamente.\n";
+}

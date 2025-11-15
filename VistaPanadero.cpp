@@ -3,8 +3,8 @@
 void VistaPanadero::mostrarMenuPanadero() {
     std::cout << "\n--- Menú Panadero ---\n";
     std::cout << "1. Registrar Receta\n";
-    std::cout << "2. Registrar Producción\n";
-    std::cout << "3. Consultar Stock\n";
+    std::cout << "2. Modificar Receta\n";
+    std::cout << "3. Registrar Producción\n";
     std::cout << "4. Salir\n";
 }
 
@@ -50,7 +50,6 @@ std::map<Ingredientes, double> VistaPanadero::obtenerIngredientesReceta() {
 
 void VistaPanadero::obtenerDatosRegistroReceta() {
     std::cout << "\n[VistaPanadero] Solicitando datos de la nueva receta...\n";
-
 }
 
 int VistaPanadero::obtenerCantidadProduccion() {
@@ -60,14 +59,10 @@ int VistaPanadero::obtenerCantidadProduccion() {
     return cantidad;
 }
 
-void VistaPanadero::mostrarInventarioPanes() {
-    std::cout << "\n[VistaPanadero] Mostrando stock de panes...\n";
-}
-
 void VistaPanadero::mostrarInventarioRecetas() {
-    std::cout << "\n[VistaPanadero] Mostrando recetas disponibles...\n";
+    std::cout << "\n[VistaPanadero] Mostrando recetas registradas...\n";
+    recetas.getRecetas();
 }
-
 void VistaPanadero::mostrarAdvertenciasProduccion() {
-    std::cout << "\n¡Advertencia!  Algunos ingredientes se encuentran por debajo de su límite mínimo.\n";
+    std::cout << "\n[VistaPanadero] Advertencia! ingredientes insuficientes para la producción.\n";
 }

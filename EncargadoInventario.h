@@ -15,6 +15,7 @@ Colaboradores:
 #include "Stock.h"
 #include "Inventario.h"
 #include "VistaEncargadoInventario.h"
+#include "VistaAdministrador.h"
 #include "BaseDeDatos.h"
 #include <iostream>
 
@@ -29,6 +30,7 @@ public:
     void eliminarIngrediente(Inventario& inv);
     void consultarInventario(const Inventario& inv);
     void verificarNivelMinimo(VistaEncargadoInventario& inv);
+    void consultarStock(VistaAdministrador& inv, const Stock& stock) const;
 };
 
 #endif

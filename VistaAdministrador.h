@@ -16,7 +16,6 @@ public:
     // Métodos visuales del administrador
     void mostrarReporteInventario(const std::map<Ingredientes, double>& inventario) const;
     void mostrarReporteStock(const std::vector<Panes>& stock);
-    void advertenciaExportacion();
     void escribirReporteStock(const std::vector<Panes>& stock);
 
     // Métodos heredados de la vista general anterior

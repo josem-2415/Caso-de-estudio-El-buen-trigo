@@ -6,8 +6,12 @@ Panadero::Panadero() {}
 void Panadero::registrarReceta(std::vector<Recetas>& recetas, const Recetas& nuevaReceta) {
     VistaPanadero vista;
     vista.obtenerDatosRegistroReceta();
-    
-    Recetas receta(vista.obtenerNombreReceta(), vista.obtenerCantidadProduccion(), vista.obtenerIngredientesReceta());
+ 
+    std::string nombre = vista.obtenerNombreReceta();
+    int cantidadProduccion = vista.obtenerCantidadIngredientes();
+    std::map<Ingredientes, double> ingredientesReceta = vista.obtenerIngredientesReceta();
+
+    Recetas receta(nombre, cantidadProduccion, ingredientesReceta);
 
     // Formatear línea para guardar en archivo
     std::string linea;
@@ -19,7 +23,7 @@ void Panadero::registrarReceta(std::vector<Recetas>& recetas, const Recetas& nue
 
     recetas.push_back(receta);
     std::cout << "[Panadero] Receta registrada con éxito.\n";
-    bd.agregarLinea("recetario.txt", linea);
+    bd.agregarLinea("recetas.txt", linea);
 }
 
 // Modifica una receta existente (reemplaza el objeto)
@@ -49,13 +53,18 @@ void Panadero::modificarReceta(std::vector<Recetas>& recetas, const Recetas& rec
 
 // Produce pan (actualiza el inventario de panes e ingredientes)
 void Panadero::producirPan(const std::string& nombreReceta, Inventario& inventario, Stock& stockDePanes, const std::vector<Recetas>& recetas) {
-    std::cout << "\n[Panadero] Produciendo pan con la receta: " << nombreReceta << "...\n";
     VistaPanadero vista;
+    std::string nombreDeReceta;
+    nombreDeReceta = vista.obtenerNombreReceta();
     int cantidadProduccion = vista.obtenerCantidadProduccion();
+    VistaEncargadoInventario veinv;
+    if (cantidadProduccion<0){
+        veinv.ingredienteNegativo();
+    }
     
     const Recetas* recetaSeleccionada = nullptr;
     for (const auto& receta : recetas) {
-        if (receta.getNombre() == nombreReceta) {
+        if (receta.getNombre() == nombreDeReceta) {
             recetaSeleccionada = &receta;
             break;
         }
@@ -76,9 +85,4 @@ void Panadero::producirPan(const std::string& nombreReceta, Inventario& inventar
     stockDePanes.agregarPan(nuevoPan, inventario);
     std::cout << "[Panadero] Producción completada. Se han producido " << cantidadProduccion << " unidades de " << nombreReceta << ".\n";
     bd.agregarLinea("stock.txt", nombreReceta + ";" + std::to_string(cantidadProduccion) + ";");
-}
-
-// Devuelve el stock actual de panes (sin imprimir nada)
-std::vector<Panes> Panadero::consultarStock(const Stock& stockDePanes) const {
-    return stockDePanes.getVectorPanes();
 }

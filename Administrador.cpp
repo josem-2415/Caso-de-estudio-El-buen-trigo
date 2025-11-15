@@ -3,11 +3,22 @@
 Administrador::Administrador() {}
 
 void Administrador::generarReporte(const Inventario& inv, const Stock& stockDePanes, const VistaAdministrador& vadm) {
-    VistaAdministrador vista;
-    std::cout << "\n --- Reporte de Inventario ---\n";
-    vista.mostrarReporteInventario(std::map<Ingredientes, double>());
-    std::cout << "\n --- Reporte de Stock ---\n";
-    vista.mostrarReporteStock(std::vector<Panes>());
+    std::cout<< "===== REPORTE DE INVENTARIO Y STOCK =====\n\n";
+
+    std::cout << "[Ingredientes]\n";
+    for (const auto& i : inv.getIngredientes()) {
+        std::cout << "- " << i.first.getNombre() << "---" << i.first.getUnidadMedida() << "---" << i.second << "\n";
+        if (inv.getCantidadIngrediente(i.first.getNombre()) < 5.0) {
+            std::cout << "  ¡Alerta! Nivel bajo";
+        }
+        std::cout << "\n";
+    }
+
+    std::cout << "\n[Productos]\n";
+    for (const auto& p : stockDePanes.getVectorPanes())
+        std::cout << "- " << p.getNombre() << ": " << p.getStock() << " unidades\n";
+
+    std::cout << "Reporte impreso exitosamente.\n";
 }
 
 /*void Administrador::exportarReporteTxt(const VistaAdministrador& vadm) {
